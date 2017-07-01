@@ -6,10 +6,9 @@ class Posts extends Component {
     return (
       <div className="outer-container__posts">
         <section className="container">
-          <Post />
-          <Post />
-          <Post />
-          <Post />
+          {this.props.posts.map(post =>
+            <Post key={post.id} post={post}>{post.title}</Post>
+          )}
         </section>
       </div>
 

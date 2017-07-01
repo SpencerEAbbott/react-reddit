@@ -6,7 +6,7 @@ class PostComments extends Component {
     return (
       <div className="post_comments">
         <h3 className="comments_header">12 comments</h3>
-        <ul class="comment_list">
+        <ul className="comment_list">
           <Comment />
           <Comment />
           <Comment />

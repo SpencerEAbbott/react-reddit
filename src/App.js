@@ -7,17 +7,39 @@ import Posts from './components/posts.js';
 
 class App extends Component {
 
-  // getInitialState: () => {
-  //   return (
-  //     posts: []
-  //   )
-  // },
+  constructor(props) {
+      super(props);
+
+      this.state = {
+        posts: []
+      };
+    }
+
+
+  componentDidMount() {
+
+    axios.get('http://www.reddit.com/r/seahawks.json')
+
+    .then(res => {
+      const posts = res.data.data.children.map(obj => obj.data);
+      this.setState({ posts });
+      console.log({posts});
+    })
+
+    .catch((error) => {
+      console.log(error);
+    });
+  }
+
+  componentWillUnmount() {
+    this.serverRequest.abort();
+  }
 
   render() {
     return (
       <div>
         <Header />
-        <Posts />
+        <Posts posts={this.state.posts}/>
       </div>
     );
   }
