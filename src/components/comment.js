@@ -5,10 +5,10 @@ class Comment extends Component {
     return (
       <li className="comment">
         <div className="comment_body">
-          I feel like its kind of the easy way out to include rookie contracts as underpaid players.
+          {this.props.comment.body}
         </div>
         <div className="comment_author">
-          - Neighbor2972
+          - {this.props.comment.author}
         </div>
       </li>
     );

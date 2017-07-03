@@ -7,12 +7,10 @@ class PostComments extends Component {
       <div className="post_comments">
         <h3 className="comments_header">12 comments</h3>
         <ul className="comment_list">
-          <Comment />
-          <Comment />
-          <Comment />
-          <Comment />
+          {this.props.comments.map(comment =>
+            <Comment className="comment" key={comment.id} comment={comment} />
+          )}
         </ul>
-
       </div>
     );
   }

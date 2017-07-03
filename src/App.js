@@ -18,17 +18,18 @@ class App extends Component {
 
   componentDidMount() {
 
+    // https://daveceddia.com/ajax-requests-in-react/
     axios.get('http://www.reddit.com/r/seahawks.json')
 
-    .then(res => {
-      const posts = res.data.data.children.map(obj => obj.data);
-      this.setState({ posts });
-      console.log({posts});
-    })
+      .then(response => {
+        const posts = response.data.data.children.map(obj => obj.data);
+        this.setState({ posts });
+        // console.log({posts});
+      })
 
-    .catch((error) => {
-      console.log(error);
-    });
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   componentWillUnmount() {
