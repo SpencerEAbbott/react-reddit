@@ -10,7 +10,7 @@ class PostComments extends Component {
     super(props);
       this.state = {
         comments: [],
-        showComponent: false
+        showComponent: false,
       };
       this.handleClick = this.handleClick.bind(this);
     }
@@ -43,21 +43,24 @@ class PostComments extends Component {
         showComponent: false
       });
     }
-    console.log(this.state.showComponent);
+    // console.log(this.state.showComponent);
   }
 
   render() {
     return (
       <div className="post_comments">
-        <h3 onClick={this.handleClick} className="comments_header">{this.props.numComments} comments</h3>
-        { this.state.showComponent ?
+        <h3 onClick={this.handleClick} className="comments_header">Comments</h3>
+        { this.state.showComponent ? // is showComponent state true? render comments map
           <div>
             <ul className="comment_list">
               {this.state.comments.map(comment =>
-                <Comment key={comment.id} comment={comment} />
+                <Comment
+                  postPermalink={this.props.postPermalink}
+                  key={comment.id}
+                  comment={comment} />
               )}
             </ul>
-            <p onClick={this.handleClick} className="comments_hide">(hide comments)</p>
+            <p onClick={this.handleClick} className="comments_hide">hide comments</p>
           </div>
         : null}
       </div>

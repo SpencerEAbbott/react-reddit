@@ -53,6 +53,9 @@ table {
 * {
   box-sizing: border-box;
 }
+a:focus, a:visited {
+	outline: none;
+}
 /*.App {
   text-align: center;
 }*/
@@ -62,31 +65,44 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
 }
 
-
-.page_header {
-  text-align: center;
-  margin: 0;
-  padding: 1em 0;
-  font-weight: 900;
-  letter-spacing: 2px
-}
-
 [class^="outer-container"] {
   text-align: center;
 }
 
-.outer-container__header {
+.outer_container__header {
+	display: flex;
+	justify-content: center;
+	/*flex-wrap: wrap;*/
+	flex-direction: column;
+	align-items: center;
   background-color: #245998;
-  color: #A5ACAF;
+	background-image: url(./images/hero.jpg);
+	background-position: bottom center;
+	background-size: cover;
+  color: #ffffff;
   font-size: 2.5rem;
+	text-align: center;
 }
 
-.outer-container__header {
+
+
+.header_logo {
+	margin-top: 1em;
+	width: 250px;
+	height: auto;
+}
+.header_title {
+	width: 100%;
   text-align: center;
+  margin: 0;
+  padding: 2em 0 1em 0;
+  font-weight: 500;
+  letter-spacing: 2px;
+	font-size: 3rem;
 }
 
 .container {
-  max-width: 60rem;
+  max-width: 40rem;
   margin: auto;
   padding: 3em 1em 1em;
   display: flex;
@@ -95,8 +111,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .post {
-  width: 50%;
-  width: calc(50% - 2em);
+  /*width: 50%;
+  width: calc(50% - 2em);*/
+	width: 100%;
   margin: 1em;
   min-width: 15rem;
   border: 1px solid #e4e4e4;
@@ -110,11 +127,22 @@ h1, h2, h3, h4, h5, h6 {
   text-align: left;
   line-height: 1.3;
   color: #333333;
+	transition: all .3s ease-outl
+}
+.post_title:hover { color: #245998; }
+
+.post_link {
+	text-decoration: none;
+	color: inherit;
 }
 
 .post_image {
   width: 100%;
   height: auto;
+	transition: opacity .3s ease-out;
+}
+.post_image:hover {
+	opacity: .9;
 }
 
 .post_details {
@@ -124,6 +152,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .comments_header {
   margin: 1em 0;
+	color: #245998;
+	cursor: pointer;
 }
 
 .comment_list {
@@ -137,6 +167,11 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.5;
   border-top: 1px solid #e4e4e4;
 }
+.comment.reply {
+		margin-left: 1em;
+		background: gray;
+}
+
 .comment:last-of-type{border-bottom: none;}
 .comment_body {
 
@@ -146,6 +181,17 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
   text-align: right;
   color: #A5ACAF;
+}
+
+.comments_hide {
+	color: #A5ACAF;
+	cursor: pointer;
+}
+
+@media only screen and (min-width: 900px) {
+	.outer_container__header {
+		min-height: 30rem;
+	}
 }
 
 @media only screen and (max-width: 20em) {

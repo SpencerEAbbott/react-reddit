@@ -24,19 +24,6 @@ class Post extends Component {
       const postMeta = response.data[0].data.children;
 
       this.setState({ postMeta })
-
-
-      // let postImageURL = null;
-      //
-      // if (postMeta[0].data.preview.images[0].source.url.length === 0 ) {
-      //   postImageURL = "nothing";
-      // } else {
-      //   postImageURL = postMeta[0].data.preview.images[0].source.url;
-      // }
-
-      // console.log(postImageURL);
-
-
     })
 
     .catch((error) => {
@@ -50,35 +37,47 @@ class Post extends Component {
 
 
   render() {
-    // console.log(this.state.postMeta.data);
-    // if (this.state.postMeta.data === null) {
-    //   return (
-    //     <div>Nada</div>
-    //   )
-    // }
 
-    // const postImageURL = this.state.postMeta[0].data.preview.images[0].source.url.length === 0  ? "asdfghjkl" : this.state.postMeta[0].data.preview.images[0].source.url
-    // const thumbnailURL = this.state.postMeta[0].data.preview.images[0].source.url ? "has image" : "null";
-    // const postImageURL = postMeta[0].data.preview.images[0].source.url;
+    const{
+      thumbnail_height,
+      thumbnail_width,
+      post,
+      post: {
+        title,
+        permalink,
+        preview,
+        url
+       },
+     } = this.props;
+
+    const postImagePlaceholder = require('../images/post_placeholder.jpg');
 
     return (
       <div className="post">
-        {/* {postImageURL} */}
-
-        <img
-          className="post_image"
-          alt="Post Title"
-          src="#"
-          height={this.props.thumbnail_height}
-          width={this.props.thumbnail_width}
-        />
+        <a className="post_link"
+           href={url}
+           target="_blank"
+           rel="noopener noreferrer">
+          <img
+            className="post_image"
+            alt={title}
+            src={preview ? preview.images[0].source.url : postImagePlaceholder}
+            height={thumbnail_height}
+            width={thumbnail_width}
+          />
+        </a>
         <div className="post_details">
           <h2 className="post_title">
-            {this.props.post.title}<br />
+            <a className="post_link"
+               href={url}
+               target="_blank"
+               rel="noopener noreferrer">
+               {title}
+             </a>
           </h2>
           <PostComments
-            post={this.props.post}
-            numComments={this.props.post.num_comments}
+            postPermalink={permalink}
+            post={post}
           />
         </div>
       </div>
