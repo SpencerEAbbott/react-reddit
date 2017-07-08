@@ -37,9 +37,10 @@ class PostComments extends Component {
 
 
   render() {
+    const handleClick = this.handleClick;
     return (
       <div className="post_comments">
-        <h3 onClick={this.handleClick} className="comments_header">Comments</h3>
+        <h3 onClick={handleClick} className="comments_header">Comments</h3>
         { this.state.showComponent ?
           <div>
             <ul className="comment_list">
@@ -50,7 +51,7 @@ class PostComments extends Component {
                   comment={comment} />
               )}
             </ul>
-            <p onClick={this.handleClick} className="comments_hide">hide comments</p>
+            <p onClick={handleClick} className="comments_hide">hide comments</p>
           </div>
         : null}
       </div>
