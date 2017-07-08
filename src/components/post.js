@@ -2,17 +2,18 @@ import React, { Component } from 'react';
 import PostComments from './post-comments';
 import axios from 'axios';
 
+const postImagePlaceholder = require('../images/post_placeholder.jpg');
 
 class Post extends Component {
 
   constructor(props) {
-      super(props);
+    super(props);
 
-      this.state = {
-        postMeta: [],
-        preview: null,
-      };
-    }
+    this.state = {
+      postMeta: [],
+      preview: null,
+    };
+  }
 
   componentDidMount() {
 
@@ -49,8 +50,6 @@ class Post extends Component {
         url
        },
      } = this.props;
-
-    const postImagePlaceholder = require('../images/post_placeholder.jpg');
 
     return (
       <div className="post">

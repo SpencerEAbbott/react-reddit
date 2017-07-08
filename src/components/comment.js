@@ -10,14 +10,12 @@ class Comment extends Component {
       this.state = {
         commentReply: [],
       };
-    }
+  }
+
 
   componentDidMount() {
 
-    console.log(`https://www.reddit.com${this.props.postPermalink}${this.props.comment.id}.json`);
-    // https://daveceddia.com/ajax-requests-in-react/
     axios.get(`https://www.reddit.com/r/Seahawks/comments/${this.props.postPermalink}${this.props.comment.id}.json`)
-
       .then(response => {
         // comments array of details for post
         const commentReply = response.data[1].data.children.map(obj => obj.data);
@@ -30,14 +28,10 @@ class Comment extends Component {
       });
   }
 
+
   render() {
 
-    const{
-      comment: {
-        body,
-        author,
-      }
-     } = this.props;
+    const{ comment: { body, author, } } = this.props;
 
     return (
       <li className="comment">

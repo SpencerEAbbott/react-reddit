@@ -13,24 +13,22 @@ class App extends Component {
       this.state = {
         posts: []
       };
-    }
+  }
 
 
   componentDidMount() {
+    axios.get('https://www.reddit.com/r/seahawks.json')
 
-    // https://daveceddia.com/ajax-requests-in-react/
-    axios.get('http://www.reddit.com/r/seahawks.json')
+    .then(response => {
+      const posts = response.data.data.children.map(obj => obj.data);
+      this.setState({ posts });
+    })
 
-      .then(response => {
-        const posts = response.data.data.children.map(obj => obj.data);
-        this.setState({ posts });
-        // console.log({posts});
-      })
-
-      .catch((error) => {
-        console.log(error);
-      });
+    .catch((error) => {
+      console.log(error);
+    });
   }
+
 
   componentWillUnmount() {
     this.serverRequest.abort();
